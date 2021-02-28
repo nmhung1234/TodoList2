@@ -28,7 +28,7 @@ class Todos extends Component {
         return (
             <div className="col-md-6">
                 <div className="todolist not-done">
-                    <h1>Todos</h1>
+                    <h1>Todos Task</h1>
 
                     <FormControl />
                     <hr />
