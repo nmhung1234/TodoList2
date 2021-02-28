@@ -31,7 +31,7 @@ class FormControl extends Component {
             [name]: value,
             time: fulldateString
         });
-        console.log(this.state);
+        // console.log(this.state); 
     };
 
     onClear = () => {
@@ -65,14 +65,14 @@ class FormControl extends Component {
     render() {
         return (
             <form className="form-group" onSubmit={this.onSubmitHandle}>
-                <label htmlFor="name" className="label label label-info">
+                <label htmlFor="name" className="badge badge-primary">
                     Add Todo
                 </label>
                 <input
                     type="text"
                     name="name"
                     value={this.state.name}
-                    className="form-control add-todo mb-10"
+                    className="form-control add-todo rounded mb-10"
                     placeholder="Add todo"
                     onChange={this.onAddTask}
                 />
@@ -92,14 +92,14 @@ class FormControl extends Component {
                     Add
                 </button>
                 <div className="mt-20">
-                    <label htmlFor="search" className="label label label-info">
+                    <label htmlFor="search" className="badge badge-primary">
                         Search
                     </label>
                     <input
                         type="text"
                         name="search"
                         value={this.state.search}
-                        className="form-control add-todo"
+                        className="form-control add-todo rounded"
                         placeholder="Search your todo..."
                         onChange={this.onSearch}
                     />

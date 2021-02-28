@@ -9,30 +9,31 @@ class TaskDones extends Component {
         this.props.onUndo(id);
     };
     render() {
-        let {task} = this.props;
+        let { task } = this.props;
         // console.log(task);
-        
+
         return (
-            <ul id="done-items"  className="list-unstyled" >
-                <li>
-                    {task.time} <br/>
-                    {task.name}
-                    <button
-                        className="remove-item btn btn-default btn-xs pull-right"
-                        onClick={() => this.onDelete(task.id)}
-                    >
-
-                        <span className="glyphicon glyphicon-remove"></span>
-                    </button>
-                    <button
-                        className="remove-item btn btn-default btn-xs pull-right mr-20"
-                        onClick={() => this.onUndo(task.id)}
-                    >
-
-                        <span className="glyphicon glyphicon-repeat "></span>
-                    </button>
-                </li>
-            </ul>
+            <div>
+                <ul id="done-items" className="list-unstyled">
+                    <li>
+                        {task.time} <br />
+                        {task.name}
+                        <button
+                            className="remove-item btn btn-primary btn-sm float-right "
+                            onClick={() => this.onUndo(task.id)}
+                        >
+                            <span className="bi bi-arrow-counterclockwise"></span>
+                        </button>
+                        <button
+                            className="remove-item btn btn-danger btn-sm float-right mr-20"
+                            onClick={() => this.onDelete(task.id)}
+                        >
+                            <span className="bi bi-x-circle"></span>
+                        </button>
+                    </li>
+                </ul>
+                <hr />
+            </div>
         );
     }
 }
@@ -44,8 +45,7 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onUndo: (id) => {
             dispatch(Action.undoTask(id));
-        }
-        
+        },
     };
 };
 export default connect(null, mapDispatchToProps)(TaskDones);

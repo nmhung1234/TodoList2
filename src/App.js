@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import Todos from './components/Todos';
 import AlreadyDone from './components/AlreadyDone';
+import './wraper.css'
 export default class App extends Component {
     render() {
         return (
-            <div>
+            <div className="wraper">
+                <div className="cicrlr"></div>
+                <div className="cicrlr"></div>
                 <div className="container">
                     <div className="row">
                         <Todos />

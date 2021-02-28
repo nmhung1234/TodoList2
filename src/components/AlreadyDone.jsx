@@ -18,7 +18,7 @@ class AlreadyDone extends Component {
         
         return (
             <div className="col-md-6">
-                <div className="todolist">
+                <div className="todolist rounded">
                     <h1>Already Done</h1>
                     {showTaskDones}
                 </div>

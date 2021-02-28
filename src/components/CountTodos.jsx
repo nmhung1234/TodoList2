@@ -8,7 +8,7 @@ class CountTodos extends Component {
         })
         let count = listTodos.length;
         return (
-            <div className="todo-footer">
+            <div className="todo-footer rounded-bottom">
                 <strong>
                     <span className="count-todos"></span>
                 </strong>
