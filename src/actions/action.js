@@ -6,6 +6,12 @@ export const addTodoItems = (task) => {
         task
     }
 }
+export const onEditTask = (task) => {
+    return {
+        type: Types.EDIT_TASK,
+        task
+    }
+}
 export const doneTask = (id) => {
     return {
         type: Types.DONE_TODOS,

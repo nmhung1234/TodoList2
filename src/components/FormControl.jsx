@@ -5,11 +5,20 @@ class FormControl extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: '',
             name: "",
             complete: false,
             search: "",
             time: "",
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.editTask.name);
+        this.setState({
+            id: nextProps.editTask.id,
+            name: nextProps.editTask.name
+        });
     }
 
     onAddTask = async (event) => {
@@ -18,20 +27,19 @@ class FormControl extends Component {
             .getHours()
             .toString()}:${date
             .getMinutes()
-            .toString()} - ${date
-            .getDate()
-            .toString()}/ ${(date .getMonth() + 1)
-            .toString()}/ ${date.getFullYear().toString()}`;
-                // console.log(fulldateString);
-                
+            .toString()} - ${date.getDate().toString()}/ ${(
+            date.getMonth() + 1
+        ).toString()}/ ${date.getFullYear().toString()}`;
+        // console.log(fulldateString);
+
         let target = event.target;
         let name = target.name;
         let value = target.type === "checkbox" ? target.checked : target.value;
         await this.setState({
             [name]: value,
-            time: fulldateString
+            time: fulldateString,
         });
-        // console.log(this.state); 
+        // console.log(this.state);
     };
 
     onClear = () => {
@@ -108,6 +116,11 @@ class FormControl extends Component {
         );
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        editTask: state.editTask
+    }
+};
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -122,4 +135,4 @@ const mapDispatchToProps = (dispatch, props) => {
         },
     };
 };
-export default connect(null, mapDispatchToProps)(FormControl);
+export default connect(mapStateToProps, mapDispatchToProps)(FormControl);

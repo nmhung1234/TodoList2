@@ -65,33 +65,48 @@ const myReducer = (state = initialize, Action) => {
     switch (Action.type) {
         case types.ADD_TODOS: {
             let newState = [...state];
-            if (Action.task.name) {
-                let task = {
-                    id: idGenerator(),
-                    name: Action.task.name,
-                    complete: Action.task.complete,
-                    time: Action.task.time
+            console.log(Action.task.id);
+            if (Action.task.id !== '') {
+                let index = newState.findIndex(item => {
+                    return item.id === Action.task.id
+                })
+                newState[index] = {
+                    ...newState[index],
+                    name: Action.task.name
                 }
-                newState.push(task);
-                Swal.fire({
-                    title: 'Add todo Successfully',
-                    width: 600,
-                    padding: '3em',
-                    background: '#fff url(https://i.gifer.com/6ob.gif)',
-                    backdrop: `
-                      rgba(0,0,123,0.4)
-                      url("https://i.gifer.com/PYh.gif")
-                      left top
-                      no-repeat
-                    `
-                });
                 localStorage.setItem('data', JSON.stringify(newState));
                 return newState;
             } else {
-                Swal.fire('Please enter your Todo');
+                if (Action.task.name) {
+                    let task = {
+                        id: idGenerator(),
+                        name: Action.task.name,
+                        complete: Action.task.complete,
+                        time: Action.task.time
+                    }
+                    newState.push(task);
+                    Swal.fire({
+                        title: 'Add todo Successfully',
+                        width: 600,
+                        padding: '3em',
+                        background: '#fff url(https://i.gifer.com/6ob.gif)',
+                        backdrop: `
+                          rgba(0,0,123,0.4)
+                          url("https://i.gifer.com/PYh.gif")
+                          left top
+                          no-repeat
+                        `
+                    });
+                    localStorage.setItem('data', JSON.stringify(newState));
+                    return newState;
+                } else {
+                    Swal.fire('Please enter your Todo');
+                }
+                return newState;
             }
-            return newState;
+            return newState
         }
+
         case types.DONE_TODOS: {
             let newState = [...state];
             let index = findIndex(newState, Action.id);

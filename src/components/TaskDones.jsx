@@ -20,7 +20,7 @@ class TaskDones extends Component {
                         <span className="taskflex align">{task.name}</span>
                         <span className="mt-10">
                             <button
-                                className="remove-item btn btn-primary btn-sm float-right "
+                                className="remove-item btn btn-primary btn-sm float-right"
                                 onClick={() => this.onUndo(task.id)}
                             >
                                 <span className="bi bi-arrow-counterclockwise"></span>
