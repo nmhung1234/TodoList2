@@ -18,20 +18,20 @@ class FormControl extends Component {
             .getHours()
             .toString()}:${date
             .getMinutes()
-            .toString()} - ${(date.getDate() + 1)
-            .toString()}/ ${date
-            .getMonth()
+            .toString()} - ${date
+            .getDate()
+            .toString()}/ ${(date .getMonth() + 1)
             .toString()}/ ${date.getFullYear().toString()}`;
-        // console.log(fulldateString);
-
+                // console.log(fulldateString);
+                
         let target = event.target;
         let name = target.name;
         let value = target.type === "checkbox" ? target.checked : target.value;
         await this.setState({
             [name]: value,
-            time: fulldateString,
+            time: fulldateString
         });
-        // console.log(this.state);
+        console.log(this.state);
     };
 
     onClear = () => {
