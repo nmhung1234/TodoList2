@@ -1,42 +1,47 @@
 import * as Types from './../constants/actionTypes';
 
 export const addTodoItems = (task) => {
-    return{
+    return {
         type: Types.ADD_TODOS,
         task
-    } 
+    }
 }
 export const doneTask = (id) => {
-    return{
+    return {
         type: Types.DONE_TODOS,
         id
-    } 
+    }
 }
 export const getDoneTask = () => {
-    return{
+    return {
         type: Types.LIST_ALL_ALREADY_DONES,
-    } 
+    }
 }
 export const deleteTask = (id) => {
-    return{
+    return {
         type: Types.DELETE_TODO,
         id
-    } 
+    }
+}
+export const deleteAll = () => {
+    return {
+        type: Types.DELETE_ALL,
+    }
 }
 export const makeAllDone = () => {
-    return{
+    return {
         type: Types.MAKE_ALL_DONE,
-    } 
+    }
 }
 export const undoTask = (id) => {
-    return{
+    return {
         type: Types.UNDO_TODO,
         id
-    } 
+    }
 }
 export const search = (item) => {
-    return{
+    return {
         type: Types.SEARCH,
         item
-    } 
+    }
 }

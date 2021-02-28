@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Action from "./../actions/action";
-import './../wraper.css';
+import "./../wraper.css";
 class ListTodo extends Component {
     onChange = (id) => {
         this.props.onDoneTask(id);
@@ -12,13 +12,18 @@ class ListTodo extends Component {
         // console.log(task);
 
         return (
-            <li className="list-group-item">
+            <li className="list-group-item select">
                 <div className="checkbox">
-                    
-                    <p onClick={() => this.onChange(task.id)}>
-                        {/* <input type="checkbox" /> */}
-                        <label className="pd-bottom-10">{task.time}</label><br/>
-                        &emsp;<label>{task.name}</label>
+                    <p  className=" flex">
+                        <p className="taskflex">
+                            <label className="pd-bottom-10 select">
+                                {task.time}
+                            </label>
+                            <br />
+                            &emsp;<label className="select align">{task.name}</label>
+                        </p>
+
+                        <p className="bi bi-check2-circle select float-right" onClick={() => this.onChange(task.id)}/>
                     </p>
                 </div>
             </li>

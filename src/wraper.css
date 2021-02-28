@@ -1,45 +1,90 @@
-*{
+* {
     box-sizing: border-box;
-    
 }
-.wraper{
+
+/* setup background */
+.wraper {
     padding: 20px 0;
     background-image: linear-gradient(to right top, #65dfc9, #6cdbeb);
-    min-height:100vh;
-    max-height:100%;
+    min-height: 100vh;
+    max-height: 100%;
     position: relative;
     z-index: 1;
 }
-.cicrlr{
-    height:350px;
-    width: 350px;
+.circle {
+    height: 300px;
+    width: 300px;
     position: absolute;
-    background: linear-gradient(to right bottom, rgba(255,255,255, 0.8), rgba(255,255,255, 0.3));
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0.3)
+    );
     z-index: 5;
     border-radius: 50%;
 }
-.cicrlr:nth-child(1){
+.circle:nth-child(1) {
     top: 10%;
     left: 5%;
 }
-.cicrlr:nth-child(2){
+.circle:nth-child(2) {
     bottom: 10%;
     right: 5%;
 }
-.container{
+.container {
     position: relative;
     z-index: 10;
 }
-.todolist{
-    background: linear-gradient(to right bottom, rgba(255,255,255, 0.3), rgba(255,255,255, 0.7));
+
+/* Todo style */
+.todolist {
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.7)
+    );
     backdrop-filter: blur(10px);
     color: rgb(77, 77, 77);
 }
-.form-control, .list-group, .list-group-item{
+.form-control,
+.list-group,
+.list-group-item {
     background-color: rgba(255, 255, 255, 0.35);
     /* backdrop-filter: blur(5px) */
 }
-.todo-footer{
-    background-color: #eefdd8a1;
-    /* backdrop-filter: blur(5px) */
+.list-group-item {
+    background-color: rgba(255, 255, 255, 0);
 }
+.todo-footer {
+    background-color: #eefdd8a1;
+}
+.bi-check2-circle {
+    font-size: 35px;
+    color: rgba(165, 165, 165, 0.644);
+    padding-left: 20px;
+}
+
+.select:hover {
+    color: rgb(1, 175, 1);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:  space-between;
+}
+.taskflex {
+    /* border: 1px solid black; */
+    width: 80%;
+}
+.align{
+    text-align: justify;
+}
+ @media(max-width: 416px){
+     .taskflex{
+         width: 100%;
+     }
+ }
+/* Already Done */

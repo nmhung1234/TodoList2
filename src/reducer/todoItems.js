@@ -114,13 +114,27 @@ const myReducer = (state = initialize, Action) => {
                 title: 'Delete Successfully',
                 showConfirmButton: false,
                 timer: 1200
-              })
+            })
             let index = newState.findIndex(item => {
                 return item.id === Action.id
             })
             newState.splice(index, 1);
             localStorage.setItem('data', JSON.stringify(newState));
             return newState
+        }
+        case types.DELETE_ALL: {
+            let newState = [...state];
+            let deltaskDone = newState.filter(item => item.complete == false);
+            Swal.fire({
+                position: 'top-end',
+                width: '15rem',
+                icon: 'success',
+                title: 'Good job!',
+                showConfirmButton: false,
+                timer: 1200
+            })
+            localStorage.setItem('data', JSON.stringify(deltaskDone));
+            return deltaskDone
         }
         case types.MAKE_ALL_DONE: {
             let newState = [...state];

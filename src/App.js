@@ -6,8 +6,8 @@ export default class App extends Component {
     render() {
         return (
             <div className="wraper">
-                <div className="cicrlr"></div>
-                <div className="cicrlr"></div>
+                <div className="circle"></div>
+                <div className="circle"></div>
                 <div className="container">
                     <div className="row">
                         <Todos />
