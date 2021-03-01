@@ -44,7 +44,9 @@ const myReducer = (state = initialize, Action) => {
                         id: idGenerator(),
                         name: Action.task.name,
                         complete: Action.task.complete,
-                        time: Action.task.time
+                        timeadd: Action.task.timeadd,
+                        timedeadline: Action.task.timedeadline,
+                        datedeadline: Action.task.datedeadline,
                     }
                     newState.push(task);
                     Swal.fire({
@@ -106,10 +108,10 @@ const myReducer = (state = initialize, Action) => {
                 Swal.fire({
                     title: 'Nothing to delete!',
                     text: 'Have a nice day!',
-                    imageUrl:`${animationdelete}`,
+                    imageUrl: `${animationdelete}`,
                     imageWidth: 280,
                     imageHeight: 240
-                  })
+                })
 
             } else {
                 Swal.fire({
@@ -129,22 +131,22 @@ const myReducer = (state = initialize, Action) => {
             let showAnimation = newState.filter(item => {
                 return item.complete === false;
             })
-            if(!showAnimation[0]){
+            if (!showAnimation[0]) {
                 Swal.fire({
                     title: 'Relax timeee',
                     text: 'No task today!',
-                    imageUrl:`${animationdance}`,
+                    imageUrl: `${animationdance}`,
                     imageWidth: 260,
                     imageHeight: 280
-                  })
-            }else{
+                })
+            } else {
                 Swal.fire({
                     title: 'Your Trophy',
                     text: 'A winner never stops trying',
-                    imageUrl:`${animationtrophy}`,
+                    imageUrl: `${animationtrophy}`,
                     imageWidth: 400,
                     imageHeight: 400
-                  })
+                })
             }
 
             newState.map(item => {

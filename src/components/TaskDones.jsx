@@ -15,11 +15,12 @@ class TaskDones extends Component {
         return (
             <div>
                 <li className="flexdone animate__animated animate__flipInX">
-                    {task.time} <br />
+                    {task.timeadd} <br />
                     <span
                         className="animate__bounceOutRight taskflex align"
                     >
-                        {task.name}
+                        {task.name} <br/>
+                        Deadline: {task.timedeadline} ngày {task.datedeadline}
                     </span>
                     <span className="mt-10 align-self">
                         <button

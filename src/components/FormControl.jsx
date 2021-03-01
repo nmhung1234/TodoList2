@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Action from "./../actions/action";
+// import DatePicker from 'react-date-picker';
 class FormControl extends Component {
     constructor(props) {
         super(props);
@@ -9,7 +10,9 @@ class FormControl extends Component {
             name: "",
             complete: false,
             search: "",
-            time: "",
+            timeadd: "",
+            timedeadline: "",
+            datedeadline: ""
         };
     }
 
@@ -18,6 +21,8 @@ class FormControl extends Component {
         this.setState({
             id: nextProps.editTask.id,
             name: nextProps.editTask.name,
+            timedeadline: nextProps.editTask.timedeadline,
+            datedeadline: nextProps.editTask.datedeadline
         });
     }
 
@@ -34,18 +39,20 @@ class FormControl extends Component {
 
         let target = event.target;
         let name = target.name;
-        let value = target.type === "checkbox" ? target.checked : target.value;
+        let value = target.type === "datedeadline" ? target.value.format("DD-MMM-YYYY") : target.value;
         await this.setState({
             [name]: value,
-            time: fulldateString,
+            timeadd: fulldateString,
         });
-        // console.log(this.state);
+        console.log(this.state);
     };
 
     onClear = () => {
         this.setState({
             name: "",
             complete: false,
+            timedeadline: "",
+            datedeadline: ""
         });
     };
 
@@ -73,26 +80,36 @@ class FormControl extends Component {
     render() {
         return (
             <form className="form-group" onSubmit={this.onSubmitHandle}>
+                {/* content */}
                 <label htmlFor="name" className="badge badge-primary">
                     Add Todo
                 </label>
                 <textarea
-                    className="form-control"
+                    className="form-control add-todo rounded mb-10"
                     name="name"
                     value={this.state.name}
-                    className="form-control add-todo rounded mb-10"
                     placeholder="📝 Add todo"
                     onChange={this.onAddTask}
                     rows="3"
                 />
-                {/* <input
-                    type="text"
-                    name="name"
-                    value={this.state.name}
+                {/* deadline */}
+                <label htmlFor="date" className="badge badge-warning">Deadline</label>
+                <input
+                    type="date"
+                    name="datedeadline"
+                    value={this.state.datedeadline}
                     className="form-control add-todo rounded mb-10"
-                    placeholder="📝 Add todo"
                     onChange={this.onAddTask}
-                /> */}
+                />
+                <input
+                    type="time"
+                    name="timedeadline"
+                    value={this.state.timedeadline}
+                    className="form-control add-todo rounded mb-10"
+                    onChange={this.onAddTask}
+                />
+
+                {/* button */}
                 <button
                     type="button"
                     id="checkAll"
@@ -108,6 +125,8 @@ class FormControl extends Component {
                 >
                     Add
                 </button>
+
+                {/* search */}
                 <div className="mt-20">
                     <label htmlFor="search" className="badge badge-primary">
                         Search

@@ -19,10 +19,7 @@ class Todos extends Component {
             return (
                 <ListTodo
                     key={index}
-                    id={task.id}
-                    name={task.name}
-                    complete={task.complete}
-                    time={task.time}
+                    task={task}
                 />
             );
         });

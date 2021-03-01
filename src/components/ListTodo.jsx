@@ -10,8 +10,8 @@ class ListTodo extends Component {
         this.props.onEditTask(task);
     };
     render() {
-        let task = this.props;
-        // console.log(task);
+        let task = this.props.task;
+        console.log(task);
 
         return (
             <li className="list-group-item select animate__animated animate__flipInX">
@@ -19,12 +19,14 @@ class ListTodo extends Component {
                     <div className="flex">
                         <p className="taskflex">
                             <label className="pd-bottom-10 select">
-                                {task.time}
+                                {task.timeadd}
                             </label>
                             <br />
                             &emsp;
-                            <label className="select align">{task.name}</label>
+                            <label className="select align">{task.name}</label> <br/>
+                            <label className="mt-10">DeadLine: {task.timedeadline} ngày {task.datedeadline}</label>
                         </p>
+                        
                         <div className="flexresponsive">
                             
                             <p
