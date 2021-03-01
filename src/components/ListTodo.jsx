@@ -23,8 +23,8 @@ class ListTodo extends Component {
                             </label>
                             <br />
                             &emsp;
-                            <label className="select align">{task.name}</label> <br/>
-                            <label className="mt-10">DeadLine: {task.timedeadline} ngày {task.datedeadline}</label>
+                            <label className="select align fw-700">{task.name}</label> <br/>
+                            <label className="mt-10 color-orange">DeadLine: {task.timedeadline} | {task.datedeadline}</label>
                         </p>
                         
                         <div className="flexresponsive">

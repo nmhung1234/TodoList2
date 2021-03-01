@@ -115,7 +115,12 @@
         align-self: center;
     }
 }
-
+.fw-700{
+    font-weight: 700;
+}
+.color-orange{
+    color: rgb(238, 90, 4)
+}
 /* Already Done */
 
 /* Footer */
