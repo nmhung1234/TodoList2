@@ -11,7 +11,7 @@ class ListTodo extends Component {
     };
     render() {
         let task = this.props.task;
-        console.log(task);
+        // console.log(task);
 
         return (
             <li className="list-group-item select animate__animated animate__flipInX">
@@ -23,12 +23,17 @@ class ListTodo extends Component {
                             </label>
                             <br />
                             &emsp;
-                            <label className="select align fw-700">{task.name}</label> <br/>
-                            <label className="mt-10 color-orange">DeadLine: {task.timedeadline} | {task.datedeadline}</label>
+                            <label className="select align fw-700">
+                                {task.name}
+                            </label>{" "}
+                            <br />
+                            <label className="mt-10 color-orange">
+                                DeadLine: {task.timedeadline} |{" "}
+                                {task.datedeadline}
+                            </label>
                         </p>
-                        
+
                         <div className="flexresponsive">
-                            
                             <p
                                 className="bi bi-pencil-square select resize"
                                 onClick={() => this.editTask(task)}

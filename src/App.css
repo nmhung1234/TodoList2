@@ -41,6 +41,9 @@
 body{
   background-color:#EEEEEE;
 }
+/* li{
+  padding: 0;
+} */
 .todolist{
   background-color:#FFF;
   padding:20px 20px 10px 20px;

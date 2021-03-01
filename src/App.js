@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Todos from './components/Todos';
-import AlreadyDone from './components/AlreadyDone';
+import TaskList from './/components/TaskList';
 import Footer from './components/Footer';
 import './wraper.css'
 export default class App extends Component {
@@ -12,7 +12,7 @@ export default class App extends Component {
                 <div className="container">
                     <div className="row">
                         <Todos />
-                        <AlreadyDone />
+                        <TaskList />
                     </div>
                 </div>
                 <Footer />

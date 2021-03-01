@@ -27,19 +27,21 @@ const myReducer = (state = initialize, Action) => {
     switch (Action.type) {
         case types.ADD_TODOS: {
             let newState = [...state];
-            // console.log(Action.task.id);
+            // console.log(Action.task);
             if (Action.task.id !== '') {
                 let index = newState.findIndex(item => {
                     return item.id === Action.task.id
                 })
                 newState[index] = {
                     ...newState[index],
-                    name: Action.task.name
+                    name: Action.task.name,
+                    timedeadline: Action.task.timedeadline,
+                    datedeadline: Action.task.datedeadline,
                 }
                 localStorage.setItem('data', JSON.stringify(newState));
                 return newState;
             } else {
-                if (Action.task.name) {
+                if (Action.task.name && Action.task.id === '') {
                     let task = {
                         id: idGenerator(),
                         name: Action.task.name,

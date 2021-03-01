@@ -1,10 +1,13 @@
 import * as types from './../constants/actionTypes';
 
 let initialize = {
-    id: '',
-    name: '',
+    id: "",
+    name: "",
     complete: false,
-    time: ''
+    search: "",
+    timeadd: "",
+    timedeadline: "",
+    datedeadline: ""
 }
 
 const myReducer = (state = initialize, Action) => {

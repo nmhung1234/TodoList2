@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Action from "./../actions/action";
-// import DatePicker from 'react-date-picker';
 class FormControl extends Component {
     constructor(props) {
         super(props);
@@ -44,7 +43,7 @@ class FormControl extends Component {
             [name]: value,
             timeadd: fulldateString,
         });
-        console.log(this.state);
+        // console.log(this.state);
     };
 
     onClear = () => {
@@ -60,21 +59,6 @@ class FormControl extends Component {
         event.preventDefault();
         await this.props.onSaveTask(this.state);
         this.onClear();
-    };
-
-    makeAllDone = () => {
-        this.props.makeAllDone();
-    };
-
-    onSearch = async (event) => {
-        let target = event.target;
-        let name = target.name;
-        let value = target.value;
-        await this.setState({
-            [name]: value,
-        });
-
-        this.props.onSearch(this.state.search);
     };
 
     render() {
@@ -111,35 +95,13 @@ class FormControl extends Component {
 
                 {/* button */}
                 <button
-                    type="button"
-                    id="checkAll"
-                    className="btn btn-success"
-                    onClick={this.makeAllDone}
-                >
-                    Mark all as done
-                </button>
-                <button
                     type="submit"
                     className="btn btn-primary mt-10 ml-10"
                     onClick={this.onAddTask}
                 >
                     Add
                 </button>
-
-                {/* search */}
-                <div className="mt-20">
-                    <label htmlFor="search" className="badge badge-primary">
-                        Search
-                    </label>
-                    <input
-                        type="text"
-                        name="search"
-                        value={this.state.search}
-                        className="form-control add-todo rounded"
-                        placeholder="🔍 Search your todo..."
-                        onChange={this.onSearch}
-                    />
-                </div>
+                
             </form>
         );
     }
@@ -155,12 +117,7 @@ const mapDispatchToProps = (dispatch, props) => {
         onSaveTask: (task) => {
             dispatch(Action.addTodoItems(task));
         },
-        makeAllDone: () => {
-            dispatch(Action.makeAllDone());
-        },
-        onSearch: (item) => {
-            dispatch(Action.search(item));
-        },
+       
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FormControl);
