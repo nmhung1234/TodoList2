@@ -81,7 +81,7 @@ class FormControl extends Component {
                     name="name"
                     value={this.state.name}
                     className="form-control add-todo rounded mb-10"
-                    placeholder="Add todo"
+                    placeholder="📝 Add todo"
                     onChange={this.onAddTask}
                 />
                 <button
@@ -108,7 +108,7 @@ class FormControl extends Component {
                         name="search"
                         value={this.state.search}
                         className="form-control add-todo rounded"
-                        placeholder="Search your todo..."
+                        placeholder="🔍 Search your todo..."
                         onChange={this.onSearch}
                     />
                 </div>

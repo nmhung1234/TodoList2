@@ -4,9 +4,9 @@ import "./../App.css";
 import FormControl from "./FormControl";
 import ListTodo from "./ListTodo";
 import CountTodos from "./CountTodos";
+import logoIcon from './../image/tick.svg'
 
 class Todos extends Component {
-    
     render() {
         let { todoListAll, search } = this.props;
         // console.log(search);
@@ -14,7 +14,7 @@ class Todos extends Component {
         let todolist = todoListAll.filter(
             (todo) => !todo.complete && todo.name.toLowerCase().includes(search)
         );
-        
+
         let tasks = todolist.map((task, index) => {
             return (
                 <ListTodo
@@ -30,7 +30,12 @@ class Todos extends Component {
         return (
             <div className="col-md-6">
                 <div className="todolist not-done rounded">
-                    <h1>Todos Tasks</h1>
+                    <h1>
+                        {/* <span> */}
+                            <img className="logo" src={logoIcon}/>
+                        {/* </span> */}
+                        Todo Tasks
+                        </h1>
                     <FormControl />
                     <hr />
                     <ul id="sortable" className="list-group">

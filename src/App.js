@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Todos from './components/Todos';
 import AlreadyDone from './components/AlreadyDone';
+import Footer from './components/Footer';
 import './wraper.css'
 export default class App extends Component {
     render() {
@@ -14,6 +15,7 @@ export default class App extends Component {
                         <AlreadyDone />
                     </div>
                 </div>
+                <Footer />
             </div>
         )
     }
