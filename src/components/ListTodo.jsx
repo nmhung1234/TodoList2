@@ -12,20 +12,30 @@ class ListTodo extends Component {
     render() {
         let task = this.props;
         // console.log(task);
-        
+
         return (
-            <li className="list-group-item select">
+            <li className="list-group-item select animate__animated animate__flipInX">
                 <div className="checkbox">
-                    <div  className=" flex">
+                    <div className="flex">
                         <p className="taskflex">
                             <label className="pd-bottom-10 select">
                                 {task.time}
                             </label>
                             <br />
-                            &emsp;<label className="select align">{task.name}</label>
+                            &emsp;
+                            <label className="select align">{task.name}</label>
                         </p>
-                        <p className="bi bi-pencil-square select resize" onClick={() => this.editTask(task)}/>
-                        <p className="bi bi-check2-circle select resize" onClick={() => this.onChange(task.id)}/>
+                        <div className="flexresponsive">
+                            
+                            <p
+                                className="bi bi-pencil-square select resize"
+                                onClick={() => this.editTask(task)}
+                            />
+                            <p
+                                className="bi bi-check2-circle select resize"
+                                onClick={() => this.onChange(task.id)}
+                            />
+                        </div>
                     </div>
                 </div>
             </li>
@@ -40,7 +50,7 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onEditTask: (task) => {
             dispatch(Action.onEditTask(task));
-        }
+        },
     };
 };
 

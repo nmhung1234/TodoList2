@@ -14,11 +14,11 @@ class TaskDones extends Component {
 
         return (
             <div>
-                <ul id="done-items" className="list-unstyled">
-                    <li className="flex">
+                
+                    <li className="flexdone animate__animated animate__flipInX">
                         {task.time} <br />
                         <span className="taskflex align">{task.name}</span>
-                        <span className="mt-10">
+                        <span className="mt-10 align-self">
                             <button
                                 className="remove-item btn btn-primary btn-sm float-right"
                                 onClick={() => this.onUndo(task.id)}
@@ -33,7 +33,7 @@ class TaskDones extends Component {
                             </button>
                         </span>
                     </li>
-                </ul>
+                
                 <hr />
             </div>
         );

@@ -34,7 +34,9 @@ class AlreadyDone extends Component {
                             Delete All
                         </button>
                     </p>
-                    {showTaskDones}
+                    <ul id="done-items" className="list-unstyled">
+                        {showTaskDones}
+                    </ul>
                 </div>
             </div>
         );

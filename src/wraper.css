@@ -74,19 +74,39 @@
 .flex {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     align-items: center;
     justify-content:  space-between;
 }
-.taskflex {
-    /* border: 1px solid black; */
-    width: 75%;
+.flexdone {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content:  space-between;
 }
+#done-items li{
+    border:none;
+}
+.taskflex {
+    width: 85%;
+    /* align-self: center; */
+}
+
 .align{
     text-align: justify;
 }
- @media(max-width: 416px){
+.align-self{
+    align-self: flex-end; 
+}
+ @media(max-width: 991px){
      .taskflex{
          width: 100%;
+     }
+     .flexresponsive{
+         display: flex;
+         justify-content: center;
+         align-self: center;
      }
  }
 /* Already Done */
