@@ -61,6 +61,15 @@ class FormControl extends Component {
     onSubmitHandle = async (event) => {
         event.preventDefault();
         await this.props.onSaveTask(this.state);
+        this.setState({
+            id: "",
+            name: "",
+            complete: false,
+            search: "",
+            timeadd: "",
+            timedeadline: "",
+            datedeadline: "",
+        });
         this.onClear();
     };
 
@@ -83,7 +92,8 @@ class FormControl extends Component {
             dateNow = `${year}-${day}-${month}`;
         }
         // console.log(dateNow);
-        
+
+        let {id} = this.state;
         return (
             <form className="form-group" onSubmit={this.onSubmitHandle}>
                 {/* content */}
@@ -124,7 +134,7 @@ class FormControl extends Component {
                     className="btn btn-primary mt-10 ml-10"
                     onClick={this.onAddTask}
                 >
-                    Add
+                    {id ? "Update" : "Add"}
                 </button>
             </form>
         );
