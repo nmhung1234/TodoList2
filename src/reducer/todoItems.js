@@ -1,4 +1,7 @@
 import * as types from './../constants/actionTypes';
+import animationdelete from './../image/animationdelete.gif'
+import animationtrophy from './../image/trophy.gif'
+import animationdance from './../image/dance.gif'
 import Swal from 'sweetalert2'
 function idGenerator() {
     var S4 = function () {
@@ -17,47 +20,6 @@ function findIndex(state, id) {
     })
     return result
 }
-async function confirmMakeAllDone() {
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-    })
-    await swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        reverseButtons: true
-    }).then((result) => {
-        if (result.isConfirmed) {
-            var rs = result.isConfirmed;
-            console.log(rs);
-            swalWithBootstrapButtons.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-            )
-            return rs
-        } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-        ) {
-            swalWithBootstrapButtons.fire(
-                'Cancelled',
-                'Your imaginary file is safe :)',
-                'error'
-            )
-            console.log(rs = false);
-            return rs
-        }
-    })
-
-}
 let data = JSON.parse(localStorage.getItem('data'));
 let initialize = data ? data : [];
 
@@ -65,7 +27,7 @@ const myReducer = (state = initialize, Action) => {
     switch (Action.type) {
         case types.ADD_TODOS: {
             let newState = [...state];
-            console.log(Action.task.id);
+            // console.log(Action.task.id);
             if (Action.task.id !== '') {
                 let index = newState.findIndex(item => {
                     return item.id === Action.task.id
@@ -104,7 +66,6 @@ const myReducer = (state = initialize, Action) => {
                 }
                 return newState;
             }
-            return newState
         }
 
         case types.DONE_TODOS: {
@@ -139,47 +100,57 @@ const myReducer = (state = initialize, Action) => {
         }
         case types.DELETE_ALL: {
             let newState = [...state];
-            let deltaskDone = newState.filter(item => item.complete == false);
-            Swal.fire({
-                position: 'top-end',
-                width: '15rem',
-                icon: 'success',
-                title: 'Good job!',
-                showConfirmButton: false,
-                timer: 1200
-            })
+            let deltaskDone = newState.filter(item => item.complete === false);
+            let showAleart = newState.filter(item => item.complete === true);
+            if (showAleart[0] === undefined) {
+                Swal.fire({
+                    title: 'Nothing to delete!',
+                    text: 'Have a nice day!',
+                    imageUrl:`${animationdelete}`,
+                    imageWidth: 280,
+                    imageHeight: 240
+                  })
+
+            } else {
+                Swal.fire({
+                    position: 'top-end',
+                    width: '20rem',
+                    icon: 'success',
+                    title: 'Little things make big days!',
+                    showConfirmButton: false,
+                    timer: 1700
+                })
+            };
             localStorage.setItem('data', JSON.stringify(deltaskDone));
             return deltaskDone
         }
         case types.MAKE_ALL_DONE: {
             let newState = [...state];
-            // Swal.fire({
-            //     title: 'Are you sure?',
-            //     text: "You won't be able to revert this!",
-            //     icon: 'warning',
-            //     showCancelButton: true,
-            //     confirmButtonColor: '#3085d6',
-            //     cancelButtonColor: '#d33',
-            //     confirmButtonText: 'Yes, delete it!'
-            // }).then(async (result) => {
-            //     if (result.isConfirmed) {
-            //         await Swal.fire(
-            //             'Deleted!',
-            //             'Your file has been deleted.',
-            //             'success'
-            //         );
-            //         newState.map(item => {
-            //             return item.complete = true;
-            //         })
-            //         await localStorage.setItem('data', JSON.stringify(newState));
-            //         return newState
-            //     }
-            // })
+            let showAnimation = newState.filter(item => {
+                return item.complete === false;
+            })
+            if(!showAnimation[0]){
+                Swal.fire({
+                    title: 'Relax timeee',
+                    text: 'No task today!',
+                    imageUrl:`${animationdance}`,
+                    imageWidth: 260,
+                    imageHeight: 280
+                  })
+            }else{
+                Swal.fire({
+                    title: 'Your Trophy',
+                    text: 'A winner never stops trying',
+                    imageUrl:`${animationtrophy}`,
+                    imageWidth: 400,
+                    imageHeight: 400
+                  })
+            }
+
             newState.map(item => {
                 return item.complete = true;
             })
             localStorage.setItem('data', JSON.stringify(newState));
-
             return newState
         }
         case types.UNDO_TODO: {

@@ -10,7 +10,7 @@ let initialize = {
 const myReducer = (state = initialize, Action) => {
     switch (Action.type) {
         case types.EDIT_TASK: {
-            console.log(Action.task);
+            // console.log(Action.task);
             return Action.task
         }
         default: return state

@@ -32,7 +32,7 @@ class Todos extends Component {
                 <div className="todolist not-done rounded">
                     <h1>
                         {/* <span> */}
-                            <img className="logo" src={logoIcon}/>
+                            <img className="logo" src={logoIcon} alt=""/>
                         {/* </span> */}
                         Todo Tasks
                         </h1>

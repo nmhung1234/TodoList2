@@ -5,7 +5,7 @@ class FormControl extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: '',
+            id: "",
             name: "",
             complete: false,
             search: "",
@@ -13,11 +13,11 @@ class FormControl extends Component {
         };
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps.editTask.name);
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        // console.log(nextProps.editTask.name);
         this.setState({
             id: nextProps.editTask.id,
-            name: nextProps.editTask.name
+            name: nextProps.editTask.name,
         });
     }
 
@@ -76,14 +76,23 @@ class FormControl extends Component {
                 <label htmlFor="name" className="badge badge-primary">
                     Add Todo
                 </label>
-                <input
+                <textarea
+                    className="form-control"
+                    name="name"
+                    value={this.state.name}
+                    className="form-control add-todo rounded mb-10"
+                    placeholder="📝 Add todo"
+                    onChange={this.onAddTask}
+                    rows="3"
+                />
+                {/* <input
                     type="text"
                     name="name"
                     value={this.state.name}
                     className="form-control add-todo rounded mb-10"
                     placeholder="📝 Add todo"
                     onChange={this.onAddTask}
-                />
+                /> */}
                 <button
                     type="button"
                     id="checkAll"
@@ -118,8 +127,8 @@ class FormControl extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        editTask: state.editTask
-    }
+        editTask: state.editTask,
+    };
 };
 
 const mapDispatchToProps = (dispatch, props) => {
