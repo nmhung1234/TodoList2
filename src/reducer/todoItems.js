@@ -35,8 +35,7 @@ const myReducer = (state = initialize, Action) => {
                 newState[index] = {
                     ...newState[index],
                     name: Action.task.name,
-                    timedeadline: Action.task.timedeadline,
-                    datedeadline: Action.task.datedeadline,
+                    deadline: Action.task.deadline,
                 }
                 localStorage.setItem('data', JSON.stringify(newState));
                 return newState;
@@ -47,8 +46,7 @@ const myReducer = (state = initialize, Action) => {
                         name: Action.task.name,
                         complete: Action.task.complete,
                         timeadd: Action.task.timeadd,
-                        timedeadline: Action.task.timedeadline,
-                        datedeadline: Action.task.datedeadline,
+                        deadline: Action.task.deadline,
                     }
                     newState.push(task);
                     Swal.fire({

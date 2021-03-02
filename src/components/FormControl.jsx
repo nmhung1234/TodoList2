@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Action from "./../actions/action";
+import { DatePicker } from "antd";
+import "antd/dist/antd.css";
+import moment from "moment";
+
 class FormControl extends Component {
     constructor(props) {
         super(props);
@@ -10,18 +14,16 @@ class FormControl extends Component {
             complete: false,
             search: "",
             timeadd: "",
-            timedeadline: "",
-            datedeadline: "",
+            deadline: "",
         };
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
-        // console.log(nextProps.editTask.name);
+        // console.log(nextProps.editTask);
         this.setState({
             id: nextProps.editTask.id,
             name: nextProps.editTask.name,
-            timedeadline: nextProps.editTask.timedeadline,
-            datedeadline: nextProps.editTask.datedeadline,
+            deadline: nextProps.editTask.deadline,
         });
     }
 
@@ -38,10 +40,7 @@ class FormControl extends Component {
 
         let target = event.target;
         let name = target.name;
-        let value =
-            target.type === "datedeadline"
-                ? target.value.format("DD-MMM-YYYY")
-                : target.value;
+        let value = target.value;
         await this.setState({
             [name]: value,
             timeadd: fulldateString,
@@ -51,17 +50,36 @@ class FormControl extends Component {
 
     onClear = () => {
         this.setState({
+            id: "",
             name: "",
             complete: false,
-            timedeadline: "",
-            datedeadline: "",
         });
     };
 
     onSubmitHandle = async (event) => {
         event.preventDefault();
         await this.props.onSaveTask(this.state);
+        // console.log(this.state);
         this.onClear();
+    };
+
+    // ant
+    onChange = (value, dateString) => {
+        let deadline = dateString.replace(" ", " - ");
+        this.setState({
+            deadline: deadline,
+        });
+    };
+    range = (start, end) => {
+        const result = [];
+        for (let i = start; i < end; i++) {
+            result.push(i);
+        }
+        return result;
+    };
+    disabledDate = (current) => {
+        // Can not select days before today and today
+        return current && current < moment().startOf("day");
     };
 
     render() {
@@ -72,18 +90,18 @@ class FormControl extends Component {
         let year = date.getFullYear().toString();
 
         // validate date
-        if(day < 10 && month > 10){
-            dateNow = `${year}-${month}-${"0"+day}`;
-        }else if(day > 10 && month < 10 ){
-            dateNow = `${year}-${"0"+month}-${day}`;
-        }else if(day < 10 && month < 10){
-            dateNow = `${year}-${0+month}-${"0"+day}`;
-        }
-        else{
+        if (day < 10 && month > 10) {
+            dateNow = `${year}-${month}-${"0" + (day - 1)}`;
+        } else if (day > 10 && month < 10) {
+            dateNow = `${year}-${"0" + month}-${day - 1}`;
+        } else if (day < 10 && month < 10) {
+            dateNow = `${year}-${0 + month}-${"0" + (day - 1)}`;
+        } else {
             dateNow = `${year}-${day}-${month}`;
         }
         // console.log(dateNow);
-        
+
+        let { id } = this.state;
         return (
             <form className="form-group" onSubmit={this.onSubmitHandle}>
                 {/* content */}
@@ -102,30 +120,28 @@ class FormControl extends Component {
                 <label htmlFor="date" className="badge badge-warning">
                     Deadline
                 </label>
-                <input
-                    type="date"
-                    name="datedeadline"
-                    min={dateNow}
-                    value={this.state.datedeadline}
-                    className="form-control add-todo rounded mb-10"
-                    onChange={this.onAddTask}
+                <br />
+                {/* ant */}
+                
+                <DatePicker
+                    name="date"
+                    className="form-control rounded mb-10"
+                    defaultValue={moment({ dateNow })}
+                    disabledDate={this.disabledDate}
+                    showTime
+                    onChange={this.onChange}
                 />
-                <input
-                    type="time"
-                    name="timedeadline"
-                    value={this.state.timedeadline}
-                    className="form-control add-todo rounded mb-10"
-                    onChange={this.onAddTask}
-                />
-
+                
+                <br />
                 {/* button */}
                 <button
                     type="submit"
-                    className="btn btn-primary mt-10 ml-10"
+                    className="btn btn-primary mt-10"
                     onClick={this.onAddTask}
                 >
-                    Add
+                    {id ? "Update" : "Add"}
                 </button>
+                {/* ant */}
             </form>
         );
     }
