@@ -11,8 +11,9 @@ export default class App extends Component {
                 <div className="circle"></div>
                 <div className="container">
                     <div className="row">
+                    <TaskList />
                         <Todos />
-                        <TaskList />
+                        
                     </div>
                 </div>
                 <Footer />

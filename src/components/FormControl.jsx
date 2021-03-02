@@ -11,7 +11,7 @@ class FormControl extends Component {
             search: "",
             timeadd: "",
             timedeadline: "",
-            datedeadline: ""
+            datedeadline: "",
         };
     }
 
@@ -21,7 +21,7 @@ class FormControl extends Component {
             id: nextProps.editTask.id,
             name: nextProps.editTask.name,
             timedeadline: nextProps.editTask.timedeadline,
-            datedeadline: nextProps.editTask.datedeadline
+            datedeadline: nextProps.editTask.datedeadline,
         });
     }
 
@@ -38,7 +38,10 @@ class FormControl extends Component {
 
         let target = event.target;
         let name = target.name;
-        let value = target.type === "datedeadline" ? target.value.format("DD-MMM-YYYY") : target.value;
+        let value =
+            target.type === "datedeadline"
+                ? target.value.format("DD-MMM-YYYY")
+                : target.value;
         await this.setState({
             [name]: value,
             timeadd: fulldateString,
@@ -51,7 +54,7 @@ class FormControl extends Component {
             name: "",
             complete: false,
             timedeadline: "",
-            datedeadline: ""
+            datedeadline: "",
         });
     };
 
@@ -62,6 +65,25 @@ class FormControl extends Component {
     };
 
     render() {
+        let date = new Date();
+        let dateNow;
+        let day = date.getDate().toString();
+        let month = (date.getMonth() + 1).toString();
+        let year = date.getFullYear().toString();
+
+        // validate date
+        if(day < 10 && month > 10){
+            dateNow = `${year}-${month}-${"0"+day}`;
+        }else if(day > 10 && month < 10 ){
+            dateNow = `${year}-${"0"+month}-${day}`;
+        }else if(day < 10 && month < 10){
+            dateNow = `${year}-${0+month}-${"0"+day}`;
+        }
+        else{
+            dateNow = `${year}-${day}-${month}`;
+        }
+        // console.log(dateNow);
+        
         return (
             <form className="form-group" onSubmit={this.onSubmitHandle}>
                 {/* content */}
@@ -77,10 +99,13 @@ class FormControl extends Component {
                     rows="3"
                 />
                 {/* deadline */}
-                <label htmlFor="date" className="badge badge-warning">Deadline</label>
+                <label htmlFor="date" className="badge badge-warning">
+                    Deadline
+                </label>
                 <input
                     type="date"
                     name="datedeadline"
+                    min={dateNow}
                     value={this.state.datedeadline}
                     className="form-control add-todo rounded mb-10"
                     onChange={this.onAddTask}
@@ -101,7 +126,6 @@ class FormControl extends Component {
                 >
                     Add
                 </button>
-                
             </form>
         );
     }
@@ -117,7 +141,6 @@ const mapDispatchToProps = (dispatch, props) => {
         onSaveTask: (task) => {
             dispatch(Action.addTodoItems(task));
         },
-       
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FormControl);

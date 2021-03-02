@@ -20,7 +20,7 @@ class TaskDones extends Component {
                         className="animate__bounceOutRight taskflex align"
                     >
                         {task.name} <br/>
-                        Deadline: {task.timedeadline} ngày {task.datedeadline}
+                        Deadline: {task.timedeadline} | {task.datedeadline}
                     </span>
                     <span className="mt-10 align-self">
                         <button
