@@ -5,9 +5,13 @@ export default class Footer extends Component {
         return (
             <div className="footer">
                 Made with ❤️ by{" "}
-                <a rel="noreferrer" href="https://github.com/nmhung1234/TodoList2">
+                <a
+                    rel="noreferrer"
+                    href="https://github.com/nmhung1234/TodoList2/tree/dev"
+                >
                     @nmhung
-                </a> &copy; 2021
+                </a>{" "}
+                &copy; 2021
             </div>
         );
     }

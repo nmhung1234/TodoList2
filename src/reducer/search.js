@@ -9,7 +9,7 @@ const myReducer = (state = initialize, Action) => {
 
             return Action.item.toLowerCase()
         }
-    default: return state
+        default: return state
 
     }
 }

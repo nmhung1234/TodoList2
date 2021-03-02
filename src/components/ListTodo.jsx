@@ -18,9 +18,7 @@ class ListTodo extends Component {
                 <div className="checkbox">
                     <div className="flex">
                         <p className="taskflex">
-                            <label className="pd-bottom-10 select">
-                                {task.timeadd}
-                            </label>
+                            <label className="select">{task.timeadd}</label>
                             <br />
                             &emsp;
                             <label className="select align fw-700">

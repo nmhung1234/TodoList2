@@ -99,7 +99,6 @@ class FormControl extends Component {
             dateNow = `${year}-${day}-${month}`;
         }
         // console.log(dateNow);
-n
         let { id } = this.state;
         return (
             <form className="form-group" onSubmit={this.onSubmitHandle}>
@@ -121,7 +120,7 @@ n
                 </label>
                 <br />
                 {/* ant */}
-                
+
                 <DatePicker
                     name="date"
                     className="form-control rounded mb-10"
@@ -130,7 +129,7 @@ n
                     showTime
                     onChange={this.onChange}
                 />
-                
+
                 <br />
                 {/* button */}
                 <button
@@ -140,7 +139,7 @@ n
                 >
                     {id ? "Update" : "Add"}
                 </button>
-                {/* ant */}
+                
             </form>
         );
     }

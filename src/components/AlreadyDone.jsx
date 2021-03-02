@@ -22,23 +22,21 @@ class AlreadyDone extends Component {
         });
 
         return (
-            
-                <div className="todolist rounded">
-                    <h1>Already Done</h1>
-                    <p>
-                        <button
-                            type="button"
-                            className="btn btn-danger"
-                            onClick={this.DeleteAll}
-                        >
-                            Delete All
-                        </button>
-                    </p>
-                    <ul id="done-items" className="list-unstyled">
-                        {showTaskDones}
-                    </ul>
-                </div>
-            
+            <div className="todolist rounded">
+                <h1>Already Done</h1>
+                <p>
+                    <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={this.DeleteAll}
+                    >
+                        Delete All
+                    </button>
+                </p>
+                <ul id="done-items" className="list-unstyled">
+                    {showTaskDones}
+                </ul>
+            </div>
         );
     }
 }

@@ -38,7 +38,10 @@
     position: relative;
     z-index: 10;
 }
-
+p {
+    margin-top: 10px;
+    margin-bottom: 0.5em;
+}
 /* Todo style */
 .todolist {
     background: linear-gradient(
@@ -49,13 +52,15 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     -moz-backdrop-filter: blur(10px);
-    --backdrop-filter: blur(10px);
+    -o-backdrop-filter: blur(10px);
+    -ms-backdrop-filter: blur(10px);
     color: var(--color-text);
 }
 .form-control,
 .list-group,
 .list-group-item {
     background-color: rgba(255, 255, 255, 0.35);
+    padding: 0 0.8rem;
     /* backdrop-filter: blur(5px) */
 }
 .list-group-item {
@@ -105,21 +110,20 @@
 .align-self {
     align-self: flex-end;
 }
+
 @media (max-width: 991px) {
     .taskflex {
         width: 100%;
     }
     .flexresponsive {
         display: flex;
-        justify-content: center;
-        align-self: center;
     }
 }
-.fw-700{
+.fw-700 {
     font-weight: 700;
 }
-.color-orange{
-    color: rgb(238, 90, 4)
+.color-orange {
+    color: rgb(238, 90, 4);
 }
 /* Already Done */
 
@@ -142,9 +146,9 @@ a:hover {
     height: 50px;
     width: 50px;
     margin: 0 20px 15px 0;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
-.logo:hover{
+.logo:hover {
     top: -10px;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
