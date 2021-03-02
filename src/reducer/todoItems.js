@@ -32,15 +32,21 @@ const myReducer = (state = initialize, Action) => {
                 let index = newState.findIndex(item => {
                     return item.id === Action.task.id
                 })
-                newState[index] = {
-                    ...newState[index],
-                    name: Action.task.name,
-                    deadline: Action.task.deadline,
+                let name = Action.task.name.trim();
+                if (!name) {
+                    Swal.fire('Please enter your Todo');
+                } else {
+                    newState[index] = {
+                        ...newState[index],
+                        name: name,
+                        deadline: Action.task.deadline,
+                    }
+                    localStorage.setItem('data', JSON.stringify(newState));
+                    return newState;
                 }
-                localStorage.setItem('data', JSON.stringify(newState));
                 return newState;
             } else {
-                if (Action.task.name && Action.task.id === '') {
+                if (Action.task.name.trim() && Action.task.id === '') {
                     let task = {
                         id: idGenerator(),
                         name: Action.task.name,
