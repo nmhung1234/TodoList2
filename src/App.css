@@ -101,6 +101,12 @@ li.ui-state-default:last-child{
 .pd-10{
   padding: 10px;
 }
+.pd-top-10{
+  padding-top: 10px;
+}
+.form-control.pd-top-10{
+  padding-top: 10px;
+}
 .pd-bottom-10{
   padding-bottom: 10px;
 }

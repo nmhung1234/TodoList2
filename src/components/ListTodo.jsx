@@ -18,7 +18,7 @@ class ListTodo extends Component {
                 <div className="checkbox">
                     <div className="flex">
                         <p className="taskflex">
-                            <label className="pd-bottom-10 select">
+                            <label className="select">
                                 {task.timeadd}
                             </label>
                             <br />
@@ -28,8 +28,7 @@ class ListTodo extends Component {
                             </label>{" "}
                             <br />
                             <label className="mt-10 color-orange">
-                                DeadLine: {task.timedeadline} |{" "}
-                                {task.datedeadline}
+                                DeadLine: {task.deadline}
                             </label>
                         </p>
 

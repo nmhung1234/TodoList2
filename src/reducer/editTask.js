@@ -6,8 +6,7 @@ let initialize = {
     complete: false,
     search: "",
     timeadd: "",
-    timedeadline: "",
-    datedeadline: ""
+    deadline: "",
 }
 
 const myReducer = (state = initialize, Action) => {
