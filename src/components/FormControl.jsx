@@ -122,7 +122,7 @@ class FormControl extends Component {
                 </label>
                 <br />
                 {/* ant */}
-                
+
                 <DatePicker
                     name="date"
                     className="form-control rounded mb-10"
@@ -131,7 +131,7 @@ class FormControl extends Component {
                     showTime
                     onChange={this.onChange}
                 />
-                
+
                 <br />
                 {/* button */}
                 <button
@@ -141,7 +141,7 @@ class FormControl extends Component {
                 >
                     {id ? "Update" : "Add"}
                 </button>
-                {/* ant */}
+                
             </form>
         );
     }

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Action from "./../actions/action";
 class TaskDones extends Component {
-   
     onDelete = (id) => {
         this.props.onSendDelete(id);
     };
@@ -16,10 +15,8 @@ class TaskDones extends Component {
             <div>
                 <li className="flexdone animate__animated animate__flipInX">
                     {task.timeadd} <br />
-                    <span
-                        className="animate__bounceOutRight taskflex align"
-                    >
-                        {task.name} <br/>
+                    <span className="animate__bounceOutRight taskflex align">
+                        {task.name} <br />
                         Deadline: {task.deadline}
                     </span>
                     <span className="mt-10 align-self">

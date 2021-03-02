@@ -12,24 +12,18 @@ class TaskList extends Component {
             complete: false,
             search: "",
             timeadd: "",
-            timedeadline: "",
-            datedeadline: "",
+            deadline: "",
         };
     }
 
-    onSubmitHandle = async (event) => {
-        event.preventDefault();
-        await this.props.onSaveTask(this.state);
-        this.onClear();
-    };
     onSearch = async (event) => {
+        event.preventDefault();
         let target = event.target;
         let name = target.name;
         let value = target.value;
         await this.setState({
             [name]: value,
         });
-
         this.props.onSearch(this.state.search);
     };
     makeAllDone = () => {
@@ -49,25 +43,18 @@ class TaskList extends Component {
                 <div className="todolist not-done rounded">
                     {/* search */}
                     <div className="mt-20">
-                        <form
-                            className="form-group"
-                            onSubmit={this.onSubmitHandle}
-                        >
-                            <label
-                                htmlFor="search"
-                                className="badge badge-primary"
-                            >
-                                Search
-                            </label>
-                            <input
-                                type="text"
-                                name="search"
-                                value={this.state.search}
-                                className="form-control add-todo rounded"
-                                placeholder="🔍 Search your todo..."
-                                onChange={this.onSearch}
-                            />
-                        </form>
+                        <label htmlFor="search" className="badge badge-primary">
+                            Search
+                        </label>
+                        <input
+                            type="text"
+                            name="search"
+                            value={this.state.search}
+                            className="form-control add-todo rounded"
+                            placeholder="🔍 Search your todo..."
+                            onChange={this.onSearch}
+                        />
+
                         {/* button */}
                         <button
                             type="button"
