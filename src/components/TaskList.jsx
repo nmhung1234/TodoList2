@@ -73,7 +73,7 @@ class TaskList extends Component {
                         <button
                             type="button"
                             id="checkAll"
-                            className="btn btn-success mb-10"
+                            className="btn btn-success mr-10 mb-10"
                             onClick={this.makeAllDone}
                         >
                             <span className="bi bi-check-all mr-10"></span>
@@ -83,7 +83,7 @@ class TaskList extends Component {
                         <button
                             type="button"
                             id="checkAll"
-                            className="btn btn-primary ml-10 mb-10"
+                            className="btn btn-primary mb-10"
                             onClick={this.sortByDeadLine}
                         >
                             <span className="bi bi-filter-left mr-10"></span>
