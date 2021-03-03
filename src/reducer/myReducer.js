@@ -8,7 +8,7 @@ const myReducer = combineReducers({
     todoItems,
     doneTasks,
     search,
-    editTask
+    editTask,
 });
 
 export default myReducer

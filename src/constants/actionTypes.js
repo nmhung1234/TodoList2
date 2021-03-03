@@ -8,4 +8,5 @@ export const MAKE_ALL_DONE = 'MAKE_ALL_DONE';
 export const SEARCH = 'SEARCH';
 export const UNDO_TODO = 'UNDO_TODO';
 export const EDIT_TASK = 'EDIT_TASK';
+export const SORT_BY_DEAD_LINE = 'SORT_BY_DEAD_LINE';
 
