@@ -173,9 +173,54 @@ const myReducer = (state = initialize, Action) => {
             localStorage.setItem('data', JSON.stringify(newState));
             return newState
         }
+        case types.SORT_BY_DEAD_LINE: {
+            let newState = [...state];
+            
+            // add field for compare
+            newState.map(task => {
+                task.deadlinesort = task.deadline
+                return null
+            })
+            // console.log(newState);
+            if (Action.sort) {
+                // convert deadline for compare
+                var newarr = newState.map(task => {
+                    let day = task.deadlinesort;
+                    let dayarr = day.split('');
+                    // console.log(dayarr);
+                    let filter = dayarr.filter(letter => {
+                        // console.log(letter);
+                        return letter !== " "
+                    })
+                    filter = filter.filter(letter => {
+                        // console.log(letter);
+                        return letter !== "-"
+                    })
+                    filter = filter.filter(letter => {
+                        // console.log(letter);
+                        return letter !== ":"
+                    })
+                    // return filter.join('')
+                    task.deadlinesort = filter.join('');
+                    return task
+                });
+                // console.log(newarr);
+                // sort as field dealinesort
+                newarr.sort((a, b) => {
+                    return a.deadlinesort - b.deadlinesort
+                });
+                // console.log(newarr);
+                newState = newarr;
+                // console.log(newState);
+                return newState
+            }
+            else{
+                return newState
+            }
+
+        }
         default: {
             let newState = [...state];
-            // console.log(newState);
             return newState
         }
 

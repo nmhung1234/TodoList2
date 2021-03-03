@@ -30,6 +30,7 @@ class AlreadyDone extends Component {
                         className="btn btn-danger"
                         onClick={this.DeleteAll}
                     >
+                        <span className="bi bi-trash mr-10"></span>
                         Delete All
                     </button>
                 </p>

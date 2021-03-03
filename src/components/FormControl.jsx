@@ -139,6 +139,7 @@ class FormControl extends Component {
                     className="btn btn-primary mt-10"
                     onClick={this.onAddTask}
                 >
+                    <span className="bi bi-plus-circle mr-10"></span>
                     {id ? "Update" : "Add"}
                 </button>
                 

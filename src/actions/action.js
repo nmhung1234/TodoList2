@@ -51,3 +51,9 @@ export const search = (item) => {
         item
     }
 }
+export const sort = (value) => {
+    return {
+        type: Types.SORT_BY_DEAD_LINE,
+        sort : value
+    }
+}

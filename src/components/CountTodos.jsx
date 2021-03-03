@@ -12,7 +12,7 @@ class CountTodos extends Component {
                 <strong>
                     <span className="count-todos"></span>
                 </strong>
-                {count} Items Left
+                {count > 1 ? count + " Items Left" : count + " Item Left" }
             </div>
         );
     }
