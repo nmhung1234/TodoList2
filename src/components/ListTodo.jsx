@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Action from "./../actions/action";
-import "./../wraper.css";
+import "./../css/wraper.css";
 class ListTodo extends Component {
     onChange = (id) => {
         this.props.onDoneTask(id);
