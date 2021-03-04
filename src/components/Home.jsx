@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 import Todos from "./Todos";
 import TaskList from "./TaskList";
@@ -21,7 +20,21 @@ export default class Home extends Component {
                 // An error happened.
             });
     };
+
+    componentDidMount() {
+        this.authListener();
+    };
+
+    authListener(){
+        fire.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                this.props.history.push('/login')
+            }
+        });
+    }
+
     render() {
+        console.log('Home')
         return (
             <div className="wraper">
                 <div className="circle"></div>
@@ -30,14 +43,12 @@ export default class Home extends Component {
                     <div className="row">
                         <TaskList />
                         <Todos />
-                        <Link to="/Login">
                             <button
                                 className="btn btn-warning"
                                 onClick={this.logOut}
                             >
                                 Log Out
                             </button>
-                        </Link>
                     </div>
                 </div>
                 <Footer />

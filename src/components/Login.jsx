@@ -10,8 +10,30 @@ class Login extends Component {
             email: "",
             password: "",
             remember: false,
+            isLogginSuccess: false
         };
     }
+
+    componentDidUpdate(prevProps, prevState){
+        if (!prevState.isLogginSuccess && this.state.isLogginSuccess !== prevState.isLogginSuccess) {
+            this.props.history.push('/home')
+        }
+    }
+
+    componentDidMount() {
+        this.authListener();
+    };
+
+    authListener(){
+        fire.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({ isLogginSuccess: true })
+            } else {
+                this.setState({ isLogginSuccess: false });
+            }
+        });
+    }
+
     onChange = async (event) => {
         let target = event.target;
         let name = target.name;
@@ -29,9 +51,10 @@ class Login extends Component {
                 // Signed in
                 var user = userCredential.user;
                 console.log('Đăng nhập thành công', user.email);
-                if(user.email){
-                    <Redirect to="/Home"/>
-                }
+                this.props.history.push('/home')
+                // if(user.email){
+                //     <Redirect to="/Home"/>
+                // }
                 // ...
             })
             .catch((error) => {

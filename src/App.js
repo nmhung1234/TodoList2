@@ -8,16 +8,16 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {}
+            user: null,
+            isAuthenticated: false
         }
     }
 
-    UNSAFE_componentDidMount() {
+    componentDidMount() {
         this.authListener();
     };
 
     authListener(){
-
         fire.auth().onAuthStateChanged((user) => {
             if (user) {
                 this.setState({ user })
@@ -31,18 +31,20 @@ class App extends Component {
 
     render() {
         let { user } = this.state;
-        console.log(user);
-        if (user !== null) {
-            <Redirect to="/Home" />
-        }
+        console.log("Render",user);
+        
         return (
             <Router>
-                <Switch>
-                    <Route exact path="/Register" component={Register} />
-                    <Route exact path="/Login" component={Login} />
-                    <Route exact path="/Home" component={Home} />
-                    <Route component={Login} />
-                </Switch>
+                {user !== null ? 
+                    <Switch>
+                        <Route exact path="/Home" component={Home} />
+                    </Switch>
+                      : 
+                    <Switch>
+                        <Route exact path="/Login" component={Login} />
+                        <Route exact path="/Register" component={Register} />
+                    </Switch>
+                } 
             </Router>
         )
     }
