@@ -1,6 +1,46 @@
 import React, { Component } from "react";
-import "./../css/Login.css"
-export default class login extends Component {
+import { Link, Redirect } from "react-router-dom";
+import "./../css/Login.css";
+import fire from "./../config/fire";
+
+class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: "",
+            password: "",
+            remember: false,
+        };
+    }
+    onChange = async (event) => {
+        let target = event.target;
+        let name = target.name;
+        let value = target.name === "remember" ? target.checked : target.value;
+        await this.setState({
+            [name]: value,
+        });
+        // console.log(this.state);
+    };
+    onHandleSubmit = (e) => {
+        e.preventDefault();
+        fire.auth()
+            .signInWithEmailAndPassword(this.state.email, this.state.password)
+            .then((userCredential) => {
+                // Signed in
+                var user = userCredential.user;
+                console.log('Đăng nhập thành công', user.email);
+                if(user.email){
+                    <Redirect to="/Home"/>
+                }
+                // ...
+            })
+            .catch((error) => {
+                console.log('Đăng nhập thất bại');
+                // var errorCode = error.code;
+                // var errorMessage = error.message;
+            });
+    };
+
     render() {
         return (
             <div className="container">
@@ -11,17 +51,22 @@ export default class login extends Component {
                                 <h5 className="card-title text-center">
                                     Sign In
                                 </h5>
-                                <form className="form-signin">
+                                <form
+                                    className="form-signin"
+                                    onSubmit={this.onHandleSubmit}
+                                >
                                     <div className="form-label-group">
                                         <input
                                             type="email"
+                                            name="email"
+                                            value={this.state.value}
                                             id="inputEmail"
                                             className="form-control"
                                             placeholder="Email address"
                                             required
-                                            autofocus
+                                            onChange={this.onChange}
                                         />
-                                        <label for="inputEmail">
+                                        <label htmlFor="inputEmail">
                                             Email address
                                         </label>
                                     </div>
@@ -29,12 +74,15 @@ export default class login extends Component {
                                     <div className="form-label-group">
                                         <input
                                             type="password"
+                                            name="password"
+                                            value={this.state.value}
                                             id="inputPassword"
                                             className="form-control"
                                             placeholder="Password"
                                             required
+                                            onChange={this.onChange}
                                         />
-                                        <label for="inputPassword">
+                                        <label htmlFor="inputPassword">
                                             Password
                                         </label>
                                     </div>
@@ -42,22 +90,33 @@ export default class login extends Component {
                                     <div className="custom-control custom-checkbox mb-3">
                                         <input
                                             type="checkbox"
+                                            name="remember"
+                                            value={this.state.value}
                                             className="custom-control-input"
                                             id="customCheck1"
+                                            onChange={this.onChange}
                                         />
                                         <label
                                             className="custom-control-label"
-                                            for="customCheck1"
+                                            htmlFor="customCheck1"
                                         >
                                             Remember password
                                         </label>
                                     </div>
-                                    <button
-                                        className="btn btn-lg btn-primary btn-block text-uppercase"
-                                        type="submit"
+
+                                        <button
+                                            className="btn btn-lg btn-primary btn-block text-uppercase"
+                                            type="submit"
+                                        >
+                                            Sign in
+                                        </button>
+
+                                    <Link
+                                        to="/Register"
+                                        className="d-block text-center mt-20 small"
                                     >
-                                        Sign in
-                                    </button>
+                                        Register Now
+                                    </Link>
                                     <hr className="my-4" />
                                     <button
                                         className="btn btn-lg btn-google btn-block text-uppercase"
@@ -90,3 +149,5 @@ export default class login extends Component {
         );
     }
 }
+
+export default Login;
