@@ -22,6 +22,8 @@ class App extends Component {
             if (user) {
                 this.setState({ user })
                 console.log("onAuth");
+                localStorage.setItem('uid', JSON.stringify(user.uid));
+
             } else {
                 this.setState({ user: null });
                 console.log("null user");
@@ -43,6 +45,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/Login" component={Login} />
                         <Route exact path="/Register" component={Register} />
+                        <Route component={Login} />
                     </Switch>
                 } 
             </Router>

@@ -1,8 +1,36 @@
 import * as types from './../constants/actionTypes';
-import animationdelete from './../image/animationdelete.gif'
-import animationtrophy from './../image/trophy.gif'
-import animationdance from './../image/dance.gif'
-import Swal from 'sweetalert2'
+import animationdelete from './../image/animationdelete.gif';
+import animationtrophy from './../image/trophy.gif';
+import animationdance from './../image/dance.gif';
+import Swal from 'sweetalert2';
+import fire from './../config/fire';
+
+let db = fire.firestore().collection('tasks');
+let uid = JSON.parse(localStorage.getItem('uid'));
+
+let getData = async (uid) => {
+    let dataUser = [];
+    const data = await db.where('id', "==", `${uid}`).get()
+    .then((ss) =>{
+         ss.forEach(data => {      
+             dataUser.push(data.data());
+             console.log(dataUser);
+         })
+    })
+    console.log(dataUser);
+    return dataUser
+}
+// let a = getData(1);
+// console.log(a);
+
+
+
+let addData = async (task) => {
+    await db.add({task});
+    console.log('Push data done');
+}
+// addData();
+
 function idGenerator() {
     var S4 = function () {
         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -21,13 +49,14 @@ function findIndex(state, id) {
     return result
 }
 let data = JSON.parse(localStorage.getItem('data'));
+// let data =  getData(uid);
 let initialize = data ? data : [];
 
 const myReducer = (state = initialize, Action) => {
     switch (Action.type) {
         case types.ADD_TODOS: {
             let newState = [...state];
-            // console.log(Action.task);
+            // console.log(Action);
             if (Action.task.id !== '') {
                 let index = newState.findIndex(item => {
                     return item.id === Action.task.id
@@ -55,6 +84,7 @@ const myReducer = (state = initialize, Action) => {
                         deadline: Action.task.deadline,
                     }
                     newState.push(task);
+                    // addData(task);
                     Swal.fire({
                         title: 'Add todo Successfully',
                         width: 600,
@@ -175,7 +205,7 @@ const myReducer = (state = initialize, Action) => {
         }
         case types.SORT_BY_DEAD_LINE: {
             let newState = [...state];
-            
+
             // add field for compare
             newState.map(task => {
                 task.deadlinesort = task.deadline
@@ -214,16 +244,17 @@ const myReducer = (state = initialize, Action) => {
                 // console.log(newState);
                 return newState
             }
-            else{
+            else {
                 return newState
             }
 
         }
+
         default: {
             let newState = [...state];
+            // let newState = getData(uid)
             return newState
         }
-
     }
 }
 export default myReducer
