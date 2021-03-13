@@ -4,7 +4,7 @@ import * as Action from "./../actions/action";
 import { DatePicker } from "antd";
 import "antd/dist/antd.css";
 import moment from "moment";
-
+import './../App.css';
 class FormControl extends Component {
     constructor(props) {
         super(props);
@@ -107,7 +107,7 @@ class FormControl extends Component {
                     Add Todo
                 </label>
                 <textarea
-                    className="form-control add-todo rounded mb-10"
+                    className="form-control add-todo rounded mb-1 pt-8"
                     name="name"
                     value={this.state.name}
                     placeholder="📝 Add todo"

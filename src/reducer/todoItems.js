@@ -187,7 +187,7 @@ const myReducer = (state = initialize, Action) => {
             localStorage.setItem('data', JSON.stringify(newState));
             return newState
         }
-        case types.SORT_BY_DEAD_LINE: {
+        case types.SORT: {
             let newState = [...state];
             
             // add field for compare
@@ -196,7 +196,7 @@ const myReducer = (state = initialize, Action) => {
                 return null
             })
             // console.log(newState);
-            if (Action.sort) {
+            if (Action.sort === 1) {
                 // convert deadline for compare
                 var newarr = newState.map(task => {
                     let day = task.deadlinesort;
@@ -227,7 +227,14 @@ const myReducer = (state = initialize, Action) => {
                 newState = newarr;
                 // console.log(newState);
                 return newState
-            }else{
+            }else if(Action.sort === 2){
+                newState.sort((taskpre, taskaft) => {
+                    if(taskpre.important > taskaft.important){
+                        return -1;
+                    }else{
+                        return 1
+                    }
+                })
                 return newState
             }
 

@@ -53,7 +53,7 @@ export const search = (item) => {
 }
 export const sort = (value) => {
     return {
-        type: Types.SORT_BY_DEAD_LINE,
+        type: Types.SORT,
         sort : value
     }
 }

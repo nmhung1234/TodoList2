@@ -13,7 +13,7 @@ class TaskList extends Component {
             search: "",
             timeadd: "",
             deadline: "",
-            sort: false,
+            sort: "",
         };
     }
 
@@ -28,14 +28,16 @@ class TaskList extends Component {
         this.props.onSearch(this.state.search);
     };
 
-    sortByDeadLine = async () => {
-        await this.setState({
-            sort: !this.state.sort
-        })
-        // console.log(this.state.sort);
-        
-        this.props.onSort(this.state.sort);
-    }
+    sort = async (value) => {
+        if (value) {
+            await this.setState({
+                sort: value,
+            });
+            // console.log(this.state.sort);
+
+            this.props.onSort(this.state.sort);
+        }
+    };
     makeAllDone = () => {
         this.props.makeAllDone();
     };
@@ -64,7 +66,7 @@ class TaskList extends Component {
                             type="text"
                             name="search"
                             value={this.state.search}
-                            className="form-control add-todo rounded"
+                            className="form-control add-todo rounded mb-10"
                             placeholder="🔍 Search your todo..."
                             onChange={this.onSearch}
                         />
@@ -72,24 +74,48 @@ class TaskList extends Component {
                         {/* button */}
                         <button
                             type="button"
-                            id="checkAll"
                             className="btn btn-success mr-10 mb-10"
                             onClick={this.makeAllDone}
                         >
                             <span className="bi bi-check-all mr-10"></span>
                             Mark all as done
                         </button>
+                        
+                        {/* <div className="dropdown"> */}
+                            <button
+                                className="btn btn-primary dropdown-toggle mb-10"
+                                type="button"
+                                id="dropdownMenu2"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                <span className="bi bi-filter-left mr-10"></span>
+                                Sort By &nbsp;
+                            </button>
+                            <div
+                                className="dropdown-menu sorttask"
+                                aria-labelledby="dropdownMenu2"
+                            >
+                                <button
+                                    className={this.state.sort === 1 ? "dropdown-item active" : "dropdown-item"}
+                                    type="button"
+                                    onClick={() => this.sort(1)}
+                                >
+                                    DeadLine
+                                </button>
+                                <button
+                                    className={this.state.sort === 2 ? "dropdown-item active" : "dropdown-item"}
+                                    type="button"
+                                    onClick={() => this.sort(2)}
+                                >
+                                    Importance
+                                </button>
+                            </div>
+                        {/* </div> */}
+                        
 
-                        <button
-                            type="button"
-                            id="checkAll"
-                            className="btn btn-primary mb-10"
-                            onClick={this.sortByDeadLine}
-                        >
-                            <span className="bi bi-filter-left mr-10"></span>
-                            Sort by DeadLine 
-                            
-                        </button>
+                        {/* ------------------- */}
                     </div>
                     {tasksList}
                     <CountTodos />
@@ -116,8 +142,7 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onSort: (value) => {
             dispatch(Action.sort(value));
-        }
+        },
     };
-
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
