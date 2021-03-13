@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import ListTodo from "./ListTodo";
 import CountTodos from "./CountTodos";
@@ -72,16 +73,28 @@ class TaskList extends Component {
                         />
 
                         {/* button */}
-                        <button
-                            type="button"
-                            className="btn btn-success mr-10 mb-10"
-                            onClick={this.makeAllDone}
+                        <Tooltip
+                            placement="bottomLeft"
+                            title="Make all as done"
+                            color="magenta"
+                            mouseEnterDelay='.5'
                         >
-                            <span className="bi bi-check-all mr-10"></span>
-                            Mark all as done
-                        </button>
-                        
+                            <button
+                                type="button"
+                                className="btn btn-success mr-10 mb-10"
+                                onClick={this.makeAllDone}
+                            >
+                                <span className="bi bi-check-all mr-10"></span>
+                                Done All
+                            </button>
+                        </Tooltip>
                         {/* <div className="dropdown"> */}
+                        <Tooltip
+                            placement="bottomLeft"
+                            title="Sort task"
+                            color="gold"
+                            mouseEnterDelay='1.5'
+                        >
                             <button
                                 className="btn btn-primary dropdown-toggle mb-10"
                                 type="button"
@@ -93,27 +106,35 @@ class TaskList extends Component {
                                 <span className="bi bi-filter-left mr-10"></span>
                                 Sort By &nbsp;
                             </button>
-                            <div
-                                className="dropdown-menu sorttask"
-                                aria-labelledby="dropdownMenu2"
+                        </Tooltip>
+                        <div
+                            className="dropdown-menu sorttask"
+                            aria-labelledby="dropdownMenu2"
+                        >
+                            <button
+                                className={
+                                    this.state.sort === 1
+                                        ? "dropdown-item active"
+                                        : "dropdown-item"
+                                }
+                                type="button"
+                                onClick={() => this.sort(1)}
                             >
-                                <button
-                                    className={this.state.sort === 1 ? "dropdown-item active" : "dropdown-item"}
-                                    type="button"
-                                    onClick={() => this.sort(1)}
-                                >
-                                    DeadLine
-                                </button>
-                                <button
-                                    className={this.state.sort === 2 ? "dropdown-item active" : "dropdown-item"}
-                                    type="button"
-                                    onClick={() => this.sort(2)}
-                                >
-                                    Importance
-                                </button>
-                            </div>
+                                DeadLine
+                            </button>
+                            <button
+                                className={
+                                    this.state.sort === 2
+                                        ? "dropdown-item active"
+                                        : "dropdown-item"
+                                }
+                                type="button"
+                                onClick={() => this.sort(2)}
+                            >
+                                Importance
+                            </button>
+                        </div>
                         {/* </div> */}
-                        
 
                         {/* ------------------- */}
                     </div>

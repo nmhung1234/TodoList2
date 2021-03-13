@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Action from "./../actions/action";
-import { DatePicker } from "antd";
+import { DatePicker, Tooltip } from "antd";
 import "antd/dist/antd.css";
 import moment from "moment";
-import './../App.css';
+import "./../App.css";
 class FormControl extends Component {
     constructor(props) {
         super(props);
@@ -103,6 +103,7 @@ class FormControl extends Component {
         return (
             <form className="form-group" onSubmit={this.onSubmitHandle}>
                 {/* content */}
+
                 <label htmlFor="name" className="badge badge-primary">
                     Add Todo
                 </label>
@@ -132,15 +133,21 @@ class FormControl extends Component {
 
                 <br />
                 {/* button */}
-                <button
-                    type="submit"
-                    className="btn btn-primary mt-10"
-                    onClick={this.onAddTask}
+                <Tooltip
+                    placement="right"
+                    title="Add Task"
+                    color="cyan"
+                    mouseEnterDelay=".5"
                 >
-                    <span className="bi bi-plus-circle mr-10"></span>
-                    {id ? "Update" : "Add"}
-                </button>
-                
+                    <button
+                        type="submit"
+                        className="btn btn-primary mt-10"
+                        onClick={this.onAddTask}
+                    >
+                        <span className="bi bi-plus-circle mr-10"></span>
+                        {id ? "Update" : "Add"}
+                    </button>
+                </Tooltip>
             </form>
         );
     }
