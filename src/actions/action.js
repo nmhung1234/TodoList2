@@ -57,3 +57,9 @@ export const sort = (value) => {
         sort : value
     }
 }
+export const importantTask = (id) => {
+    return {
+        type: Types.IMPORTANT_TASK,
+        id
+    }
+}

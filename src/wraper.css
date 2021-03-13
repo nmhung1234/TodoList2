@@ -82,6 +82,20 @@ p {
     transition: all 0.3s;
     cursor: pointer;
 }
+
+/* star */
+.star{
+    color: rgb(255, 208, 0);
+    font-size: 18px;
+}
+.starDefault{
+    color: var(--color-text);
+    font-size: 18px;
+}
+/* .star:hover{
+    color: rgb(255, 208, 0);
+} */
+
 .flex {
     display: flex;
     flex-wrap: wrap;

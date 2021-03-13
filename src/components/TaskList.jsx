@@ -13,7 +13,7 @@ class TaskList extends Component {
             search: "",
             timeadd: "",
             deadline: "",
-            sort: false
+            sort: false,
         };
     }
 

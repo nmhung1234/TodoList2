@@ -53,6 +53,7 @@ const myReducer = (state = initialize, Action) => {
                         complete: Action.task.complete,
                         timeadd: Action.task.timeadd,
                         deadline: Action.task.deadline,
+                        important: false
                     }
                     newState.push(task);
                     Swal.fire({
@@ -173,6 +174,19 @@ const myReducer = (state = initialize, Action) => {
             localStorage.setItem('data', JSON.stringify(newState));
             return newState
         }
+        case types.IMPORTANT_TASK: {
+            let newState = [...state];
+            let index = newState.findIndex(item => {
+                return item.id === Action.id
+            });
+
+            newState[index] = {
+                ...newState[index],
+                important: !newState[index].important
+            }
+            localStorage.setItem('data', JSON.stringify(newState));
+            return newState
+        }
         case types.SORT_BY_DEAD_LINE: {
             let newState = [...state];
             
@@ -213,8 +227,7 @@ const myReducer = (state = initialize, Action) => {
                 newState = newarr;
                 // console.log(newState);
                 return newState
-            }
-            else{
+            }else{
                 return newState
             }
 
