@@ -77,7 +77,7 @@ class TaskList extends Component {
                             placement="bottomLeft"
                             title="Make all as done"
                             color="magenta"
-                            mouseEnterDelay='.5'
+                            mouseEnterDelay=".5"
                         >
                             <button
                                 type="button"
@@ -93,7 +93,7 @@ class TaskList extends Component {
                             placement="bottomLeft"
                             title="Sort task"
                             color="gold"
-                            mouseEnterDelay='1.5'
+                            mouseEnterDelay="1.5"
                         >
                             <button
                                 className="btn btn-primary dropdown-toggle mb-10"
