@@ -46,7 +46,7 @@ class ListTodo extends Component {
                                 {task.name}
                             </label>{" "}
                             <br />
-                            <label className="mt-10 color-orange">
+                            <label className="mt-10 color-orange fw-500">
                                 DeadLine: {task.deadline}
                             </label>
                         </p>
