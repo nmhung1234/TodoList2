@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import * as Action from "./../actions/action";
+import './../wraper.css';
 class TaskDones extends Component {
     onDelete = (id) => {
         this.props.onSendDelete(id);
@@ -13,7 +14,7 @@ class TaskDones extends Component {
         let { task } = this.props;
         // console.log(task);
         return (
-            <div>
+            <div className="taskDoneColorText">
                 <li className="flexdone animate__animated animate__flipInX">
                     {task.timeadd} <br />
                     <span className="animate__bounceOutRight taskflex align">
