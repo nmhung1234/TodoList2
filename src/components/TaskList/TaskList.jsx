@@ -3,7 +3,7 @@ import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import ListTodo from "./ListTodo";
 import CountTodos from "./CountTodos";
-import * as Action from "./../actions/action";
+import * as Action from "../../actions/action";
 class TaskList extends Component {
     constructor(props) {
         super(props);

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Tooltip } from "antd";
 import { connect } from "react-redux";
-import * as Action from "./../actions/action";
-import './../wraper.css';
+import * as Action from "../../actions/action";
+import './../../wraper.css';
 class TaskDones extends Component {
     onDelete = (id) => {
         this.props.onSendDelete(id);

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Tooltip } from "antd";
-import "./../App.css";
+import "./../../App.css";
 import TaskDones from "./TaskDones";
 import { connect } from "react-redux";
-import * as Action from "./../actions/action";
+import * as Action from "../../actions/action";
 class AlreadyDone extends Component {
     DeleteAll = () => {
         this.props.deleteAll();

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as Action from "./../actions/action";
+import * as Action from "./../../actions/action";
 import { DatePicker, Tooltip } from "antd";
 import "antd/dist/antd.css";
 import moment from "moment";
-import "./../App.css";
+import "./../../App.css";
 class FormControl extends Component {
     constructor(props) {
         super(props);
@@ -135,7 +135,7 @@ class FormControl extends Component {
                 {/* button */}
                 <Tooltip
                     placement="right"
-                    title="Add Task"
+                    title={this.state.id ? "UpdateTask" : "Add Task"}
                     color="cyan"
                     mouseEnterDelay=".5"
                 >
