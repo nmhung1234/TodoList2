@@ -1,0 +1,10 @@
+.Clock{
+    width: fit-content;
+    margin: 0 auto;
+    font-size:25px;
+    padding: 10px;
+    /* border: 1px solid black; */
+    border-radius:5px;
+    text-align: center;
+    background: linear-gradient()
+}

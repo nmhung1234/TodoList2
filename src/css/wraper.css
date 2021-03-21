@@ -4,7 +4,12 @@
 * {
     box-sizing: border-box;
 }
-
+.taskDoneColorText{
+    color: #9e9e9e;
+}
+.taskDoneColorText:hover{
+    color: black;
+}
 /* setup background */
 .wraper {
     padding: 20px 0;
@@ -58,11 +63,20 @@ p {
 }
 .form-control,
 .list-group,
-.list-group-item {
+.list-group-item,
+.Clock {
     background-color: rgba(255, 255, 255, 0.35);
     padding: 0 0.8rem;
     /* backdrop-filter: blur(5px) */
 }
+
+.sorttask{
+    background-color: rgba(255, 255, 255, 0.774);
+    
+    padding: 0;
+    overflow: hidden;
+}
+
 .list-group-item {
     background-color: rgba(255, 255, 255, 0);
 }
@@ -82,6 +96,20 @@ p {
     transition: all 0.3s;
     cursor: pointer;
 }
+
+/* star */
+.star{
+    color: rgb(255, 208, 0);
+    font-size: 18px;
+}
+.starDefault{
+    color: var(--color-text);
+    font-size: 18px;
+}
+/* .star:hover{
+    color: rgb(255, 208, 0);
+} */
+
 .flex {
     display: flex;
     flex-wrap: wrap;
@@ -121,6 +149,9 @@ p {
 }
 .fw-700 {
     font-weight: 700;
+}
+.fw-500{
+    font-weight: 500;
 }
 .color-orange {
     color: rgb(238, 90, 4);

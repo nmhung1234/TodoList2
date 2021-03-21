@@ -82,6 +82,7 @@ const myReducer = (state = initialize, Action) => {
                         complete: Action.task.complete,
                         timeadd: Action.task.timeadd,
                         deadline: Action.task.deadline,
+                        important: false
                     }
                     newState.push(task);
                     // addData(task);
@@ -203,16 +204,29 @@ const myReducer = (state = initialize, Action) => {
             localStorage.setItem('data', JSON.stringify(newState));
             return newState
         }
-        case types.SORT_BY_DEAD_LINE: {
+        case types.IMPORTANT_TASK: {
             let newState = [...state];
+            let index = newState.findIndex(item => {
+                return item.id === Action.id
+            });
 
+            newState[index] = {
+                ...newState[index],
+                important: !newState[index].important
+            }
+            localStorage.setItem('data', JSON.stringify(newState));
+            return newState
+        }
+        case types.SORT: {
+            let newState = [...state];
+            
             // add field for compare
             newState.map(task => {
                 task.deadlinesort = task.deadline
                 return null
             })
             // console.log(newState);
-            if (Action.sort) {
+            if (Action.sort === 1) {
                 // convert deadline for compare
                 var newarr = newState.map(task => {
                     let day = task.deadlinesort;
@@ -243,16 +257,20 @@ const myReducer = (state = initialize, Action) => {
                 newState = newarr;
                 // console.log(newState);
                 return newState
-            }
-            else {
+            }else if(Action.sort === 2){
+                newState.sort((taskpre, taskaft) => {
+                    if(taskpre.important > taskaft.important){
+                        return -1;
+                    }else{
+                        return 1
+                    }
+                })
                 return newState
             }
 
         }
-
         default: {
             let newState = [...state];
-            // let newState = getData(uid)
             return newState
         }
     }

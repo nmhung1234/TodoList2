@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as Action from "./../actions/action";
-import { DatePicker } from "antd";
+import * as Action from "./../../actions/action";
+import { DatePicker, Tooltip } from "antd";
 import "antd/dist/antd.css";
 import moment from "moment";
-
+import "./../../App.css";
 class FormControl extends Component {
     constructor(props) {
         super(props);
@@ -59,7 +59,6 @@ class FormControl extends Component {
     onSubmitHandle = async (event) => {
         event.preventDefault();
         await this.props.onSaveTask(this.state);
-        // console.log(this.state);
         this.onClear();
     };
 
@@ -100,16 +99,16 @@ class FormControl extends Component {
             dateNow = `${year}-${day}-${month}`;
         }
         // console.log(dateNow);
-
         let { id } = this.state;
         return (
             <form className="form-group" onSubmit={this.onSubmitHandle}>
                 {/* content */}
-                <label htmlFor="name" className="badge badge-primary ">
+
+                <label htmlFor="name" className="badge badge-primary">
                     Add Todo
                 </label>
                 <textarea
-                    className="form-control add-todo rounded mb-10 pd-top-10"
+                    className="form-control add-todo rounded mb-1 pt-8"
                     name="name"
                     value={this.state.name}
                     placeholder="📝 Add todo"
@@ -134,15 +133,21 @@ class FormControl extends Component {
 
                 <br />
                 {/* button */}
-                <button
-                    type="submit"
-                    className="btn btn-primary mt-10"
-                    onClick={this.onAddTask}
+                <Tooltip
+                    placement="right"
+                    title={this.state.id ? "UpdateTask" : "Add Task"}
+                    color="cyan"
+                    mouseEnterDelay=".5"
                 >
-                    <span className="bi bi-plus-circle mr-10"></span>
-                    {id ? "Update" : "Add"}
-                </button>
-                
+                    <button
+                        type="submit"
+                        className="btn btn-primary mt-10"
+                        onClick={this.onAddTask}
+                    >
+                        <span className="bi bi-plus-circle mr-10"></span>
+                        {id ? "Update" : "Add"}
+                    </button>
+                </Tooltip>
             </form>
         );
     }

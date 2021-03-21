@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import "./../App.css";
-import FormControl from "./FormControl";
-import logoIcon from "./../image/tick.svg";
-import AlreadyDone from "./AlreadyDone";
+
+import "./../../App.css";
+import logoIcon from "./../../image/tick.svg";
+
+import AlreadyDone from "../AlreadyDone/AlreadyDone";
+import FormControl from "../FormControl/FormControl";
 class Todos extends Component {
     render() {
         return (
