@@ -1,21 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-class CountTodos extends Component {
-    render() {
-        let { items, search } = this.props;
-        let listTodos = items.filter((task) => {
-            return !task.complete && task.name.toLowerCase().includes(search);
-        });
-        let count = listTodos.length;
-        return (
-            <div className="todo-footer rounded-bottom mt-10">
-                <strong>
-                    <span className="count-todos"></span>
-                </strong>
-                {count > 1 ? count + " Items Left" : count + " Item Left" }
-            </div>
-        );
-    }
+function CountTodos(props) {
+    let { items, search } = props;
+    let listTodos = items.filter((task) => {
+        return !task.complete && task.name.toLowerCase().includes(search);
+    });
+    let count = listTodos.length;
+    return (
+        <div className="todo-footer rounded-bottom mt-10">
+            <strong>
+                <span className="count-todos"></span>
+            </strong>
+            {count > 1 ? count + " Items Left" : count + " Item Left"}
+        </div>
+    );
 }
 
 const mapStateToProps = (state) => {

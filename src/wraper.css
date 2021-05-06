@@ -10,6 +10,7 @@
 .taskDoneColorText:hover {
     color: black;
 }
+
 /* setup background */
 .wraper {
     padding: 20px 0;
@@ -79,7 +80,10 @@ p {
     transition: all 0.3s;
     cursor: pointer;
 }
+ /* todo-task */
 
+
+ /* ------------------ */
 /* star */
 .star {
     color: rgb(255, 208, 0);
@@ -141,7 +145,7 @@ p {
 /* Footer */
 .footer {
     text-align: center;
-    margin: 60px 0 0 20px;
+    margin: 35px 0 0 20px;
     color: var(--color-text);
     z-index: 20;
 }

@@ -47,7 +47,6 @@ class FormControl extends Component {
         });
         // console.log(this.state);
     };
-
     onClear = () => {
         this.setState({
             id: "",

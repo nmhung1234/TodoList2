@@ -40,9 +40,7 @@
 body {
     background-color: #eeeeee;
 }
-/* li{
-  padding: 0;
-} */
+
 .todolist {
     background-color: #fff;
     padding: 20px 20px 10px 20px;
@@ -56,6 +54,7 @@ body {
 .form-control {
     border-radius: 0;
 }
+
 li.ui-state-default {
     background: #fff;
     border: none;

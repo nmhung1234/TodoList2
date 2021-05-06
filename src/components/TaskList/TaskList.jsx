@@ -138,7 +138,9 @@ class TaskList extends Component {
 
                         {/* ------------------- */}
                     </div>
-                    {tasksList}
+                    
+                        {tasksList}
+                    
                     <CountTodos />
                 </div>
             </div>

@@ -21,3 +21,21 @@ export default class App extends Component {
         )
     }
 }
+
+(function () {
+    Notification.requestPermission();
+    let noti = new Notification(
+        'Thông báo',
+        {
+           body: 'Task bạn vẫn chưa hoàn thành',
+           icon: 'https://picsum.photos/50/50',
+        //    tag: 'https://www.youtube.com/'
+        }
+    );
+    // noti.onclick = function(){
+    //     window.location.href = this.tag
+    // }
+})();
+
+
+      

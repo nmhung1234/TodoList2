@@ -6,20 +6,18 @@ class ListTodo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: '',
-            important: false
-        }
+            id: "",
+            important: false,
+        };
     }
-
     onImportant = async (id) => {
-
         await this.setState({
             id: id,
-            important: !this.state.important
-        })
+            important: !this.state.important,
+        });
 
         this.props.onImportantTask(this.state.id);
-    }
+    };
 
     onChange = (id) => {
         this.props.onDoneTask(id);
@@ -28,18 +26,22 @@ class ListTodo extends Component {
         this.props.onEditTask(task);
     };
     render() {
-        let {task} = this.props;
+        let { task } = this.props;
         return (
             <li className="list-group-item select animate__animated animate__flipInX">
                 <div className="checkbox">
                     <div className="flex">
                         <p className="taskflex">
-                            <label className="select">{task.timeadd}</label> &emsp; 
-                            <span 
-                            className={task.important ? "fas fa-star star animate__animated animate__tada" : "far fa-star starDefault"} 
-                            onClick={() => this.onImportant(task.id)}>
-
-                            </span>
+                            <label className="select">{task.timeadd}</label>{" "}
+                            &emsp;
+                            <span
+                                className={
+                                    task.important
+                                        ? "fas fa-star star animate__animated animate__tada"
+                                        : "far fa-star starDefault"
+                                }
+                                onClick={() => this.onImportant(task.id)}
+                            ></span>
                             <br />
                             &emsp;
                             <label className="select align fw-700">
@@ -78,7 +80,7 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onImportantTask: (id) => {
             dispatch(Action.importantTask(id));
-        }
+        },
     };
 };
 

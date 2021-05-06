@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 
 import "./style.css";
+import './../../wraper.css'
 
 function formatTimeString(now) {
     let hours = `0${now.getHours()}`.slice(-2);
@@ -55,7 +56,7 @@ function Clock() {
 
     return (
         <Fragment>
-            <p className="Clock">{timeString}</p>
+            <p className="Clock todolist">{timeString}</p>
         </Fragment>
     );
 }
